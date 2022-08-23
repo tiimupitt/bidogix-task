@@ -1,19 +1,23 @@
-import { useState } from "react"
+import { useState } from "react";
+import classNames from "classnames";
 
 export default function ProductCard({ product }) {
-	// const [hovering, setHovering] = useState(false);
+	const [hovering, setHovering] = useState(false);
 
 	return (
-		<div className="relative overflow-hidden" >
-			{/* <div className="absolute filter blur-sm  opacity-50 -m-60" >
+		<div className="relative overflow-hidden" onMouseEnter={() => setHovering(true)} onMouseLeave={() => setHovering(false)}>
+			<div className={classNames([
+				'absolute filter blur-3xl saturate-[5] -m-[1000px]',
+				hovering ? 'opacity-10' : 'opacity-0'
+			])} >
 				<img src={product?.image_url} className='w-full h-full object-cover ' />
-			</div> */}
+			</div>
 
-			<div className="w-full relative overflow-hidden flex flex-col justify-center items-center">
+			<div className="w-full relative overflow-hidden flex flex-col justify-center items-center p-8 cursor-pointer">
 
 
-				<div className="w-full h-52">
-					<img src={product?.image_url} className='w-full h-full object-contain' />
+				<div className="w-full h-52 overflow-hidden">
+					<img src={product?.image_url} className='w-full h-full object-contain mix-blend-multiply' />
 				</div>
 
 				<p className="mt-4 font-medium text-center">{product?.title}</p>

@@ -16,8 +16,8 @@ function App() {
           <ShopLogo />
         </div>
 
-        <div className="p-2 z-30">
-          <h1 className="text-gray-900 uppercase font-normal tracking-wider text-3xl">Museum Shop</h1>
+        <div className="p-3 z-30">
+          <h1 className="text-gray-900 uppercase font-normal tracking-wider text-2xl">Museum Shop</h1>
         </div>
 
 
