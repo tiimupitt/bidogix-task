@@ -3,13 +3,25 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import store from 'store';
+import { Provider } from 'react-redux';
+
+import BrowseProducts from './routes/BrowseProducts';
+import SingleProduct from './routes/SingleProduct';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <React.StrictMode>
-      <App />
+      <Provider store={store}>
+        <Routes>
+          <Route path='/' element={<App />}>
+            <Route path='browse-products' element={<BrowseProducts />} />
+            <Route path='single-product' element={<SingleProduct />} />
+          </Route>
+        </Routes>
+      </Provider>
     </React.StrictMode>
   </BrowserRouter>
 );
