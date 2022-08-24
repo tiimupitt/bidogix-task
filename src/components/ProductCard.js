@@ -9,7 +9,7 @@ export default function ProductCard({ product, onClick }) {
 
 			{/* blurred hover background */}
 			<div className={classNames([
-				'absolute filter blur-3xl saturate-[10] -m-[1000px]  transition-all duration-150',
+				'absolute filter blur-3xl saturate-[10] -m-[1000px]  transition-all duration-75',
 				hovering ? 'opacity-10' : 'opacity-0'
 			])} >
 				<img src={product?.image_url} className='w-full h-full object-cover ' />
