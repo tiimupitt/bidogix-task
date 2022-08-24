@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import store from 'store';
 import { Provider } from 'react-redux';
 
@@ -19,6 +19,7 @@ root.render(
           <Route path='/' element={<App />}>
             <Route path='browse-products' element={<BrowseProducts />} />
             <Route path='single-product' element={<SingleProduct />} />
+            <Route path='/' element={<Navigate to='browse-products' />} />
           </Route>
         </Routes>
       </Provider>

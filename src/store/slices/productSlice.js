@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 
 const initialState = {
 	products: {
@@ -11,7 +11,7 @@ const initialState = {
 			total_pages: undefined
 		}
 	},
-	basket: null
+	basket: {}
 }
 
 export const productSlice = createSlice({
@@ -29,9 +29,37 @@ export const productSlice = createSlice({
 		},
 		clearProducts: state => {
 			state.products = initialState.products;
+		},
+		addToBasket: (state, action) => {
+			const product = action.payload;
+			const currentBasket = current(state.basket);
+
+			const updatedBasketProduct = {
+				product: product,
+				count: (currentBasket[product.id]?.count ?? 0) + 1
+			}
+
+			state.basket[product.id] = updatedBasketProduct;
+		},
+		removeFromBasket: (state, action) => {
+			const product = action.payload;
+
+			let currentBasket = current(state.basket);
+
+			const updatedBasketProduct = {
+				product: product,
+				count: (currentBasket[product.id]?.count ?? 0) - 1
+			}
+
+			if (updatedBasketProduct.count < 1) {
+				const newBasket = state.basket;
+				delete newBasket[product.id];
+			} else {
+				state.basket[product.id] = updatedBasketProduct;
+			}
 		}
 	}
 });
 
-export const { addProductsPage, clearProducts } = productSlice.actions;
+export const { addProductsPage, clearProducts, addToBasket, removeFromBasket } = productSlice.actions;
 export default productSlice.reducer;
